@@ -24,3 +24,4 @@ $(document).ready(function () {
           $(this).addClass("future").removeClass("past").removeClass("present");
         };
       });
+    
