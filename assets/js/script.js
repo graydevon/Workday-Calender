@@ -1,4 +1,4 @@
-$(document).ready(function () {
+/*$(document).ready(function () {
     //put the date at the top of the schedule
     $("#currentDay").append(moment().format("dddd, MMMM Do"));
   
@@ -42,4 +42,45 @@ $(document).ready(function () {
     // set localStorage with time and textarea
     localStorage.setItem(time, taskText);
   });
-});
+}); */
+
+// dateTime.fromObject({ outputCalendar: c }).toLocaleString(DateTime.DATE_FULL);
+
+var saveTextArea = document.querySelector("#textarea")
+var textArea;
+var scheduleTime = document.querySelector(".time-block");
+var timeNow = moment().hours();
+
+
+//display time at top
+var displayTime = document.getElementById("todaysDate")
+var currentTime = moment();
+displayTime.textContent = currentTime.format('MMMM Do YYYY, h:mm:ss a')
+
+
+//local storage save
+document.querySelectorAll(".saveBtn").forEach(function (saveButton) {
+  var hourId = parseInt($(saveButton).parent().attr("id"));
+  var saveTask = saveButton.parentElement.querySelector(".userinput");
+  //get item from local storage & make an object
+  saveTask.value = localStorage.getItem(hourId);
+  
+  //Change colors based on the time of the day. Depending if its past, present, or the future.
+
+
+  if (hourId < timeNow) {
+    saveTask.classList.add("past");
+  }
+  else if (hourId === timeNow) {
+    saveTask.classList.add("present");
+  }
+  else {
+    saveTask.classList.add("future");
+  }
+
+  saveButton.addEventListener("click", function () {
+
+    localStorage.setItem(hourId, saveTask.value);
+  })
+})
+

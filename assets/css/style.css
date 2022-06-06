@@ -49,7 +49,7 @@ body {
   
   .present {
     background-color: #ff6961;
-    color: white;
+    color: rgb(120, 115, 115);
   }
   
   .future {
